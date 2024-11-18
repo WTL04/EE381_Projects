@@ -53,3 +53,17 @@ if __name__ == "__main__":
     plt.ylabel("Cumulative Density")
     plt.grid(alpha=0.3)
     plt.show()
+
+    # Calculate the probability that the carton lasts longer than 3 years 
+    time_3_years = 1095
+    F_1095 = np.interp(time_3_years, bin_centers, cdf)
+    prob_3_years = 1 - F_1095  # P(S > 1095)
+    print(f"Probability that the carton lasts longer than 3 years: {prob_3_years:.4f}")
+
+    # calculate probability that carton last between 2.0 and 2.5 years
+    time_2_years = 730
+    time_2_5_years = 912
+    F_730 = np.interp(time_2_years, bin_centers, cdf) 
+    F_912 = np.interp(time_2_5_years, bin_centers, cdf) 
+    prob_between_2_and_2_5_years = F_912 - F_730  # P(730 <= S <= 912)
+    print(f"Probability that the carton lasts between 2.0 and 2.5 years: {prob_between_2_and_2_5_years:.4f}")
